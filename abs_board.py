@@ -53,9 +53,11 @@ def set_board_up(stones_per_player = 4):
 
     def draw_txt(end = False):
         'Use ASCII characters to draw the board.'
-        for fila in range(BSIZ):
+        for fila in range(3):
             print("|", end = "")
-            print("-" * BSIZ, end = "")
+            for columna in range(3):
+                print(" - ", end = "")
+            print("|")
 
     # return these 4 functions to make them available to the main program
     return stones, select_st, move_st, draw_txt
