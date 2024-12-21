@@ -26,7 +26,7 @@ def set_board_up(stones_per_player = 4):
     played_stones1 = []
     played_stones2 = []
     
-    # selected_stone = None
+    selected_stone = Stone
 
     def stones():
         "return iterable with the stones already played"
@@ -73,22 +73,22 @@ def set_board_up(stones_per_player = 4):
         columna = 0
 
         # Comprovar files
-        while fila < range(BSIZ):
-            if taula[fila][0] == taula[fila][1] == taula[fila][2]:
+        while fila < BSIZ:
+            if -1 != taula[fila][0] == taula[fila][1] == taula[fila][2]:
                 return True 
             fila += 1
         
         # Comprovar columnes
-        while columna < range(BSIZ):
-            if taula[0][columna] == taula[1][columna] == taula[2][columna]:
+        while columna < BSIZ:
+            if -1 != taula[0][columna] == taula[1][columna] == taula[2][columna]:
                 return True
             columna += 1 
 
         # Comprovar les diagonals
-        if taula[0][0] == taula[1][1] == taula[2][2]:
+        if -1 != taula[0][0] == taula[1][1] == taula[2][2]:
             return True
         
-        if taula[0][2] == taula[1][1] == taula[2][0]:
+        if -1 != taula[0][2] == taula[1][1] == taula[2][0]:
             return True
 
         return False
@@ -101,18 +101,17 @@ def set_board_up(stones_per_player = 4):
         Return 3 values: bool indicating whether a stone is
         already selected, current player, and boolean indicating
         the end of the game.
+        
+        return True/False, turn, end() 
         '''
-        '''
+        
         nonlocal turn, selected_stone
 
         if len(played_stones2) != stones_per_player:
             if turn == 1:
-                selected_stone = played_stones1
-        '''
-        pass
-
-               
-        
+                played_stones1.append(Stone(i, j, PLAYER_COLOR[0]))
+                turn = 2
+                return True, turn, end()             
 
     def draw_txt(end = False):
         'Use ASCII characters to draw the board as a matrix.'
