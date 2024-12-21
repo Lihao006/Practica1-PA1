@@ -23,9 +23,14 @@ def set_board_up(stones_per_player = 4):
 
     # init board and game data here
 
-    def stones():
+    def stones(taula):
         "return iterable with the stones already played"
-        pass
+        played_stones = []
+        for fila in range(len(taula)):
+            for columna in range(len(taula[fila])):
+                if taula[fila][columna] != 0:  # Assuming 0 represents an empty cell
+                    played_stones.append((fila, columna, taula[fila][columna]))
+        return played_stones
 
     def select_st(i, j):
         '''
@@ -38,7 +43,7 @@ def set_board_up(stones_per_player = 4):
 
     def end():
         'Test whether there are 3 aligned stones'
-        pass
+        
 
     def move_st(i, j):
         '''If valid square, move there selected stone and unselect it,
@@ -52,7 +57,7 @@ def set_board_up(stones_per_player = 4):
         pass
 
     def draw_txt(end = False):
-        'Use ASCII characters to draw the board.'
+        'Use ASCII characters to draw the board.' # Això no està acabat, però així seria la forma base, hem d'afegir-hi la informació sobre les pedres que hi ha.
         for fila in range(3):
             print("|", end = "")
             for columna in range(3):
