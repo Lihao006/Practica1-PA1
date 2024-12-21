@@ -22,12 +22,12 @@ def set_board_up(stones_per_player = 4):
 
     # init board and game data here
 
-    def stones(taula):
+    def stones(taula.list):
         "return iterable with the stones already played"
         played_stones1 = []
         played_stones2 = []
-        for fila in range(len(taula)):
-            for columna in range(len(taula[fila])):
+        for fila in range(BSIZ):
+            for columna in range(len(board[fila])):
                 if taula[fila][columna] == "X":  
                     played_stones1.append(Stone(fila, columna, PLAYER_COLOR[0]))
                 elif taula[fila][columna] == "O":
@@ -76,6 +76,7 @@ def set_board_up(stones_per_player = 4):
 
     def draw_txt(board, end = False):
         'Use ASCII characters to draw the board as a matrix.'
+        nonlocal board
         for fila in range(len(board)):
             print("|", end="")
             for columna in range(len(board[fila])):
