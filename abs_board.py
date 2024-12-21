@@ -29,11 +29,9 @@ def set_board_up(stones_per_player = 4):
         for fila in range(len(taula)):
             for columna in range(len(taula[fila])):
                 if taula[fila][columna] == "X":  
-                    played_stones1.append((fila, columna, taula[fila][columna]))
-                    nonlocal Stone = Stone(fila, columna, PLAYER_COLOR[0])
+                    played_stones1.append(Stone(fila, columna, PLAYER_COLOR[0]))
                 elif taula[fila][columna] == "O":
-                    played_stones2.append((fila, columna, taula[fila][columna]))
-                    nonlocal stone2 = Stone(fila, columna, PLAYER_COLOR[1])
+                    played_stones2.append(Stone(fila, columna, PLAYER_COLOR[1]))
         return played_stones1, played_stones2
 
     def select_st(i, j):
@@ -74,7 +72,7 @@ def set_board_up(stones_per_player = 4):
         already selected, current player, and boolean indicating
         the end of the game.
         '''
-        if len(played_stones1) == 4 and len(played_stones2) == 4:
+        if len(played_stones2) == (BSIZ ** 2)/2:
 
     def draw_txt(end = False):
         'Use ASCII characters to draw the board.'
