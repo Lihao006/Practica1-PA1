@@ -30,10 +30,10 @@ def set_board_up(stones_per_player = 4):
             for columna in range(len(taula[fila])):
                 if taula[fila][columna] == "X":  
                     played_stones1.append((fila, columna, taula[fila][columna]))
-                    nonlocal stone1 = Stone(fila, columna, PLAYER_COLOR)
+                    nonlocal Stone = Stone(fila, columna, PLAYER_COLOR[0])
                 elif taula[fila][columna] == "O":
                     played_stones2.append((fila, columna, taula[fila][columna]))
-                    nonlocal stone2 = Stone(fila, columna, PLAYER_COLOR)
+                    nonlocal stone2 = Stone(fila, columna, PLAYER_COLOR[1])
         return played_stones1, played_stones2
 
     def select_st(i, j):
@@ -43,7 +43,8 @@ def set_board_up(stones_per_player = 4):
         To be called only after all stones played.
         Report success by returning a boolean;
         '''
-        
+        if Stone.color == PLAYER_COLOR:
+            
 
     def end():
         'Test whether there are 3 aligned stones'
