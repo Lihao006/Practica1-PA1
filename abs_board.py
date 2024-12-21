@@ -21,6 +21,8 @@ def set_board_up(stones_per_player = 4):
     'Init stones and board, prepare functions to provide, act as their closure'
     # init board and game data here
     taula = [[NO_PLAYER for _ in range(BSIZ)] for _ in range(BSIZ)]
+    stone1 = Stone(0, 0, PLAYER_COLOR[0])
+    stone2 = Stone(0, 0, PLAYER_COLOR[1])
 
     played_stones1 = []
     played_stones2 = []
@@ -30,9 +32,9 @@ def set_board_up(stones_per_player = 4):
         nonlocal played_stones1, played_stones2
         for fila in range(BSIZ):
             for columna in range(len(taula[fila])):
-                if taula[fila][columna] == "X":  
+                if taula[fila][columna] == stone1:  
                     played_stones1.append(Stone(fila, columna, PLAYER_COLOR[0]))
-                elif taula[fila][columna] == "O":
+                elif taula[fila][columna] == stone2:
                     played_stones2.append(Stone(fila, columna, PLAYER_COLOR[1]))
         return played_stones1, played_stones2
 
