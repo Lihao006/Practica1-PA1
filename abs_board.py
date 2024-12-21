@@ -74,19 +74,19 @@ def set_board_up(stones_per_player = 4):
         already selected, current player, and boolean indicating
         the end of the game.
         '''
-        pass
+        if len(played_stones1) == 4 and len(played_stones2) == 4:
 
     def draw_txt(end = False):
         'Use ASCII characters to draw the board.'
         for fila in range(BSIZ):
             print("|", end = "")
             for columna in range(BSIZ):
-                if taula[fila][columna] == 0:
+                if taula[fila][columna] == 1 and stone2:
                     print(" - ", end = "")
-                elif taula[fila][columna] == 1 and stone1:
+                elif taula[fila][columna] == 1 and stone1: # Això de dibuixar les pedres no sé si es fa així.
                     print(" X ", end = "")
                 else:
-                    print(" O ", end = "")
+                    print(" - ", end = "")
             print("|")
 
     # return these 4 functions to make them available to the main program
