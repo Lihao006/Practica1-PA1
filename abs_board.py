@@ -25,6 +25,7 @@ def set_board_up(stones_per_player = 4):
 
     played_stones1 = []
     played_stones2 = []
+    
     # selected_stone = None
 
     def stones():
@@ -89,6 +90,8 @@ def set_board_up(stones_per_player = 4):
         
         if taula[0][2] == taula[1][1] == taula[2][0]:
             return True
+
+        return False
 
     def move_st(i, j):
         '''If valid square, move there selected stone and unselect it,
