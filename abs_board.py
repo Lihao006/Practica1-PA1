@@ -16,7 +16,7 @@ from constants import PLAYER_COLOR, BSIZ, NO_PLAYER, GRAY
 from collections import namedtuple
 
 Stone = namedtuple('Stone', ('x', 'y', 'color'))
-
+stone1 = Stone(, ,)
 
 def set_board_up(stones_per_player = 4):
     'Init stones and board, prepare functions to provide, act as their closure'
@@ -28,7 +28,7 @@ def set_board_up(stones_per_player = 4):
         played_stones = []
         for fila in range(len(taula)):
             for columna in range(len(taula[fila])):
-                if taula[fila][columna] != 0:  # Assuming 0 represents an empty cell
+                if taula[fila][columna] != 0:  # 0 == casella buida
                     played_stones.append((fila, columna, taula[fila][columna]))
         return played_stones
 
@@ -57,11 +57,16 @@ def set_board_up(stones_per_player = 4):
         pass
 
     def draw_txt(end = False):
-        'Use ASCII characters to draw the board.' # Això no està acabat, però així seria la forma base, hem d'afegir-hi la informació sobre les pedres que hi ha.
+        'Use ASCII characters to draw the board.'
         for fila in range(3):
             print("|", end = "")
             for columna in range(3):
-                print(" - ", end = "")
+                if taula[fila][columna] == 0:
+                    print(" - ", end = "")
+                elif taula[fila][columna] == 1 and stone1:
+                    print(" X ", end = "")
+                else:
+                    print(" O ", end = "")
             print("|")
 
     # return these 4 functions to make them available to the main program
