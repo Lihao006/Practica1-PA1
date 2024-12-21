@@ -72,7 +72,7 @@ def set_board_up(stones_per_player = 4):
         already selected, current player, and boolean indicating
         the end of the game.
         '''
-        if len(played_stones2) == (BSIZ ** 2)/2:
+        if len(played_stones2) == stones_per_player:
 
     def draw_txt(board, end = False):
         'Use ASCII characters to draw the board as a matrix.'
