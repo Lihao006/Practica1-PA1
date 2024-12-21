@@ -16,7 +16,8 @@ from constants import PLAYER_COLOR, BSIZ, NO_PLAYER, GRAY
 from collections import namedtuple
 
 Stone = namedtuple('Stone', ('x', 'y', 'color'))
-stone1 = Stone(, ,)
+stone1 = Stone(, , PLAYER_COLOR[0])
+stone2 = Stone(, , PLAYER_COLOR[1])
 
 def set_board_up(stones_per_player = 4):
     'Init stones and board, prepare functions to provide, act as their closure'
@@ -25,12 +26,15 @@ def set_board_up(stones_per_player = 4):
 
     def stones(taula):
         "return iterable with the stones already played"
-        played_stones = []
+        played_stones1 = []
+        played_stones2 = []
         for fila in range(len(taula)):
             for columna in range(len(taula[fila])):
-                if taula[fila][columna] != 0:  # 0 == casella buida
-                    played_stones.append((fila, columna, taula[fila][columna]))
-        return played_stones
+                if taula[fila][columna] == "X":  # 0 == casella buida
+                    played_stones1.append((fila, columna, taula[fila][columna]))
+                elif taula[fila][columna] == "O":
+                    played_stones2.append((fila, columna, taula[fila][columna]))
+        return played_stones1, played_stones2
 
     def select_st(i, j):
         '''
@@ -39,7 +43,7 @@ def set_board_up(stones_per_player = 4):
         To be called only after all stones played.
         Report success by returning a boolean;
         '''
-        pass
+        
 
     def end():
         'Test whether there are 3 aligned stones'
