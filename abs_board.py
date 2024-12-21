@@ -19,13 +19,15 @@ Stone = namedtuple('Stone', ('x', 'y', 'color'))
 
 def set_board_up(stones_per_player = 4):
     'Init stones and board, prepare functions to provide, act as their closure'
-    taula = [[NO_PLAYER for _ in range(BSIZ)] for _ in range(BSIZ)]
     # init board and game data here
+    taula = [[NO_PLAYER for _ in range(BSIZ)] for _ in range(BSIZ)]
+
+    played_stones1 = []
+    played_stones2 = []
 
     def stones():
         "return iterable with the stones already played"
-        nonlocal played_stones1 = []
-        nonlocal played_stones2 = []
+        nonlocal played_stones1, played_stones2
         for fila in range(BSIZ):
             for columna in range(len(taula[fila])):
                 if taula[fila][columna] == "X":  
