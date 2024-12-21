@@ -19,15 +19,15 @@ Stone = namedtuple('Stone', ('x', 'y', 'color'))
 
 def set_board_up(stones_per_player = 4):
     'Init stones and board, prepare functions to provide, act as their closure'
-
+    taula = [[NO_PLAYER for _ in range(BSIZ)] for _ in range(BSIZ)]
     # init board and game data here
 
-    def stones(taula.list):
+    def stones():
         "return iterable with the stones already played"
         played_stones1 = []
         played_stones2 = []
         for fila in range(BSIZ):
-            for columna in range(len(board[fila])):
+            for columna in range(len(taula[fila])):
                 if taula[fila][columna] == "X":  
                     played_stones1.append(Stone(fila, columna, PLAYER_COLOR[0]))
                 elif taula[fila][columna] == "O":
@@ -74,17 +74,16 @@ def set_board_up(stones_per_player = 4):
         '''
         if len(played_stones2) == stones_per_player:
 
-    def draw_txt(board, end = False):
+    def draw_txt(end = False):
         'Use ASCII characters to draw the board as a matrix.'
-        nonlocal board
-        for fila in range(len(board)):
+        for fila in range(len(taula)):
             print("|", end="")
-            for columna in range(len(board[fila])):
-                if board[fila][columna] == 0:
+            for columna in range(len(taula[fila])):
+                if taula[fila][columna] == NO_PLAYER:
                     print(" - ", end="")
-                elif board[fila][columna] == 1:
+                elif taula[fila][columna] == 1:
                     print(" X ", end="")
-                elif board[fila][columna] == 2:
+                elif taula[fila][columna] == 2:
                     print(" O ", end="")
             print("|")
 
