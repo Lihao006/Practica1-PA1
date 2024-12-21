@@ -20,17 +20,18 @@ Stone = namedtuple('Stone', ('x', 'y', 'color'))
 def set_board_up(stones_per_player = 4):
     'Init stones and board, prepare functions to provide, act as their closure'
     # init board and game data here
-    taula = [[NO_PLAYER for _ in range(BSIZ)] for _ in range(BSIZ)]
+    taula = [[NO_PLAYER for y in range(BSIZ)] for x in range(BSIZ)]
     turn = 1 # Turn = 1 per al jugador 1 i 2 per al jugador 2.
 
     played_stones1 = []
     played_stones2 = []
+    # selected_stone = None
 
     def stones():
         "return iterable with the stones already played"
         nonlocal played_stones1, played_stones2
         for fila in range(BSIZ):
-            for columna in range(len(taula[fila])):
+            for columna in range(len(taula[fila])): # Això podria ser "for columna in range(BSIZ):" perquè al inicialitzar la taula les columnes són : "NO_PLAYER for y in range(BSIZ)"
                 if taula[fila][columna] == 1:  
                     played_stones1.append(Stone(fila, columna, PLAYER_COLOR[0]))
                 elif taula[fila][columna] == 2:
@@ -44,8 +45,9 @@ def set_board_up(stones_per_player = 4):
         To be called only after all stones played.
         Report success by returning a boolean;
         '''
-        if Stone.color == PLAYER_COLOR:
-            
+
+        # if Stone.color == PLAYER_COLOR:
+        pass    
 
     def end(): 
         '''
@@ -62,9 +64,31 @@ def set_board_up(stones_per_player = 4):
         Modifica alguna cosa si se t'acudeix algo millor.
         '''
         
-        
         'Test whether there are 3 aligned stones'
+
+        # Com és un algoritme de cerca utilitzo el while
+
+        fila = 0
+        columna = 0
+
+        # Comprovar files
+        while fila < range(BSIZ):
+            if taula[fila][0] == taula[fila][1] == taula[fila][2]:
+                return True 
+            fila += 1
         
+        # Comprovar columnes
+        while columna < range(BSIZ):
+            if taula[0][columna] == taula[1][columna] == taula[2][columna]:
+                return True
+            columna += 1 
+
+        # Comprovar les diagonals
+        if taula[0][0] == taula[1][1] == taula[2][2]:
+            return True
+        
+        if taula[0][2] == taula[1][1] == taula[2][0]:
+            return True
 
     def move_st(i, j):
         '''If valid square, move there selected stone and unselect it,
@@ -75,7 +99,17 @@ def set_board_up(stones_per_player = 4):
         already selected, current player, and boolean indicating
         the end of the game.
         '''
-        if len(played_stones2) == stones_per_player:
+        '''
+        nonlocal turn, selected_stone
+
+        if len(played_stones2) != stones_per_player:
+            if turn == 1:
+                selected_stone = played_stones1
+        '''
+        pass
+
+               
+        
 
     def draw_txt(end = False):
         'Use ASCII characters to draw the board as a matrix.'
