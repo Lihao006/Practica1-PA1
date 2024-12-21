@@ -46,7 +46,22 @@ def set_board_up(stones_per_player = 4):
         if Stone.color == PLAYER_COLOR:
             
 
-    def end():
+    def end(): 
+        '''
+        Aqui tinc una vaga idea: cada vegada que es mou una pedra,
+        es comprova si hi ha 3 pedres alineades només en aquella columna 
+        (comprovant que hi ha pedres del mateix color en (i, j),(i+1, j), ... , (i+(BSIZ-1), j)) 
+        i fila (fins a i, j+(BSIZ-1)) que s'ha posat la pedra. 
+        Per tant, no caldria analitzar totes les files i columnes perquè segur que no hi haurà 3 en ratlla en altres llocs.
+        Després, si no hi ha 3 en raya, mirem si aquella pedra pertany a alguna casella de la diagonal principal, 
+        que tots tenen forma de (0, 0), (1, 1), ... , (BSIZ - 1, BSIZ - 1). Mirem si hi ha 3 en ratlla a la diagonal principal.
+        Si pertant a la diagonal primaria, segur que no pot pertànyer a la diagonal inversa a no ser que la pedra estigui
+        en la casella central de la taula, que seria el (BSIZ // 2, BSIZ // 2). Per tant, examinarem les dues
+        diagonals si la pedra està en la casella central. Sinó, doncs només la diagonal on estigui.
+        Modifica alguna cosa si se t'acudeix algo millor.
+        '''
+        
+        
         'Test whether there are 3 aligned stones'
         
 
