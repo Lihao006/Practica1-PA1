@@ -24,8 +24,8 @@ def set_board_up(stones_per_player = 4):
 
     def stones():
         "return iterable with the stones already played"
-        played_stones1 = []
-        played_stones2 = []
+        nonlocal played_stones1 = []
+        nonlocal played_stones2 = []
         for fila in range(BSIZ):
             for columna in range(len(taula[fila])):
                 if taula[fila][columna] == "X":  
