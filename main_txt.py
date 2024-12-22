@@ -39,7 +39,7 @@ while not end:
         i, j = input("Select destination coordinates: ").split()
         stone_selected, curr_player, end = move_st(int(i), int(j))
         draw_txt(end)
-
+        
 # Wait for the user to look at the screen before ending the program.
 input('\nGame over.') 
 
