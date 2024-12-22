@@ -91,7 +91,6 @@ def set_board_up(stones_per_player = 4):
 
         # Comprovar les diagonals
         if (-1 != taula[0][0] == taula[1][1] == taula[2][2]) or (-1 != taula[0][2] == taula[1][1] == taula[2][0]):
-            print ("Ha guanyat el jugador :", turn)
             return True
 
         return False
@@ -163,16 +162,20 @@ def set_board_up(stones_per_player = 4):
 
     def draw_txt(end = False):
         'Use ASCII characters to draw the board as a matrix.'
-        for fila in range(len(taula)):
-            print("|", end="")
-            for columna in range(len(taula[fila])):
-                if taula[fila][columna] == NO_PLAYER:
-                    print(" - ", end="")
-                elif taula[fila][columna] == 1:
-                    print(" X ", end="")
-                elif taula[fila][columna] == 2:
-                    print(" O ", end="")
-            print("|")
+        if end:
+            print("Game over")
+            print("Ha guanyat el jugador :", turn)
+        else:
+            for fila in range(len(taula)):
+                print("|", end="")
+                for columna in range(len(taula[fila])):
+                    if taula[fila][columna] == NO_PLAYER:
+                        print(" - ", end="")
+                    elif taula[fila][columna] == 1:
+                        print(" X ", end="")
+                    elif taula[fila][columna] == 2:
+                        print(" O ", end="")
+                print("|")
 
     # return these 4 functions to make them available to the main program
     return stones, select_st, move_st, draw_txt
