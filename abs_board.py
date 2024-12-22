@@ -22,7 +22,6 @@ def set_board_up(stones_per_player = 4):
     # init board and game data here
     taula = [[NO_PLAYER for y in range(BSIZ)] for x in range(BSIZ)]
     turn = 1 # Turn = 1 per al jugador 1 i 2 per al jugador 2.
-    jugador_actual = PLAYER_COLOR[turn - 1]
 
     played_stones1 = []
     played_stones2 = []
@@ -50,10 +49,13 @@ def set_board_up(stones_per_player = 4):
 
         nonlocal selected_stone
 
-        if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == turn:
-            selected_stone = (i, j)
-            return True
-        return False   
+        if len(played_stones1) == len(played_stones2) == stones_per_player:
+            if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == turn:
+                selected_stone = (Stone(i, j, PLAYER_COLOR[turn - 1]))
+                return True
+            return False   
+        else:
+            return False  
 
     def end(): 
         '''
@@ -74,26 +76,21 @@ def set_board_up(stones_per_player = 4):
 
         # Com és un algoritme de cerca utilitzo el while
 
-        fila = 0
-        columna = 0
+        fila = selected_stone.x
+        columna = selected_stone.y
 
         # Comprovar files
-        while fila < BSIZ:
-            if -1 != taula[fila][0] == taula[fila][1] == taula[fila][2]:
+        while Stone.x < BSIZ:
+            if -1 != taula[selected_stone.x][0] == taula[selected_stone.x][1] == taula[selected_stone.x][2]:
                 return True 
-            fila += 1
         
         # Comprovar columnes
-        while columna < BSIZ:
-            if -1 != taula[0][columna] == taula[1][columna] == taula[2][columna]:
+        while selected_stone.y < BSIZ:
+            if -1 != taula[0][selected_stone.y] == taula[1][selected_stone.y] == taula[2][selected_stone.y]:
                 return True
-            columna += 1 
 
         # Comprovar les diagonals
-        if -1 != taula[0][0] == taula[1][1] == taula[2][2]:
-            return True
-        
-        if -1 != taula[0][2] == taula[1][1] == taula[2][0]:
+        if (-1 != taula[0][0] == taula[1][1] == taula[2][2]) or (-1 != taula[0][2] == taula[1][1] == taula[2][0]):
             return True
 
         return False
@@ -115,7 +112,7 @@ def set_board_up(stones_per_player = 4):
                 selected_stone = played_stones1
         '''    
         
-        nonlocal turn, taula, played_stones1, played_stones2
+        nonlocal turn, taula, selected_stone, played_stones1, played_stones2
 
         
         # Aquest codi només funciona per les 4 primeres
@@ -133,6 +130,7 @@ def set_board_up(stones_per_player = 4):
         
         
         # He provat això però no funciona
+
         '''
         k = 0
         if len(played_stones2) < stones_per_player:
@@ -166,16 +164,33 @@ def set_board_up(stones_per_player = 4):
 
     def draw_txt(end = False):
         'Use ASCII characters to draw the board as a matrix.'
-        for fila in range(len(taula)):
-            print("|", end="")
-            for columna in range(len(taula[fila])):
-                if taula[fila][columna] == NO_PLAYER:
-                    print(" - ", end="")
-                elif taula[fila][columna] == 1:
-                    print(" X ", end="")
-                elif taula[fila][columna] == 2:
-                    print(" O ", end="")
-            print("|")
+        if end:
+            print("Game over")
+            print("Ha guanyat el jugador :", turn)
+        else:
+            for fila in range(len(taula)):
+                print("|", end="")
+                for columna in range(len(taula[fila])):
+                    if taula[fila][columna] == NO_PLAYER:
+                        print(" - ", end="")
+                    elif taula[fila][columna] == 1:
+                        print(" X ", end="")
+                    elif taula[fila][columna] == 2:
+                        print(" O ", end="")
+                print("|")
+            
+            try:
+                if len(played_stones2) < stones_per_player:
+                    print("Torn del jugador", turn)
+                    return move_st(int(input("Introdueix la fila: ")), int(input("Introdueix la columna: ")))
+                else:
+                    print("Torn del jugador", turn)
+                    print("Ara selecciona la pedra que vols moure")
+                    return select_st(int(input("Introdueix la fila: ")), int(input("Introdueix la columna: ")))
+            except:
+                print("Introdueix un valor vàlid: de 0 a 2")
+                return draw_txt()
+
 
     # return these 4 functions to make them available to the main program
     return stones, select_st, move_st, draw_txt
