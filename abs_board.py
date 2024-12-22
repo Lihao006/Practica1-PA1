@@ -47,12 +47,12 @@ def set_board_up(stones_per_player = 4):
         To be called only after all stones played.
         Report success by returning a boolean;
         '''
-        pass    
+
         nonlocal selected_stone
 
         if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == turn:
             selected_stone = (i, j)
-            return 
+            return True
         return False   
 
     def end(): 
@@ -117,9 +117,9 @@ def set_board_up(stones_per_player = 4):
         
         nonlocal turn, taula
 
+        
         # Aquest codi només funciona per les 4 primeres
         if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == -1: # Comprovar que la casella és valida i està buida
-            
             if turn == 1:
                 taula[i][j] = 1
                 turn = 2
@@ -128,6 +128,38 @@ def set_board_up(stones_per_player = 4):
                 taula[i][j] = 2
                 turn = 1
                 return bool(len(played_stones2) < stones_per_player), turn, end()
+        
+        
+        # He provat això però no funciona
+        '''
+        k = 0
+        if len(played_stones2) < stones_per_player:
+            if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == -1: # Comprovar que la casella és valida i està buida
+                k += 1
+                if turn == 1:
+                    taula[i][j] = 1
+                    turn = 2
+                    return bool(k < 8), turn, end()
+                elif turn == 2:
+                    taula[i][j] = 2
+                    turn = 1
+                    return bool(k < 8), turn, end()
+        else:
+            if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == -1:
+                if selected_stone != None:
+                    si = selected_stone[0]
+                    sj = selected_stone[1]
+                    taula[si][sj] = NO_PLAYER
+                    selected_stone = None
+                    if turn == 1:
+                        taula[i][j] = 1
+                        turn = 2
+                        return False, turn, end()
+                    elif turn == 2:
+                        taula[i][j] = 2
+                        turn = 1
+                        return False, turn, end()
+        '''            
             
 
     def draw_txt(end = False):
