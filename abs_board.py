@@ -164,7 +164,6 @@ def set_board_up(stones_per_player = 4):
                         turn = 1
                         return False, turn, end()
         '''          
-            
 
     def draw_txt(end = False):
         'Use ASCII characters to draw the board as a matrix.'
