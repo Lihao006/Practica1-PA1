@@ -115,9 +115,16 @@ def set_board_up(stones_per_player = 4):
         '''    
     
         nonlocal turn, taula, selected_stone, played_stones1, played_stones2
+<<<<<<< HEAD
+
+        '''
+        # Aquest codi només funciona per les 4 primeres
+        if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == -1: # Comprovar que la casella és valida i està buida
+=======
         
         # Aquest codi només funciona per les 4 primeres
         if (0 <= i < BSIZ) and (0 <= j < BSIZ) and (taula[i][j] == -1): # Comprovar que la casella és valida i està buida
+>>>>>>> 59a1dac9d7e19173e4e0cadf4430dee82e466f09
             if turn == 1:
                 taula[i][j] = 1
                 played_stones1.append(Stone(i, j, PLAYER_COLOR[0]))
@@ -136,25 +143,26 @@ def set_board_up(stones_per_player = 4):
         # He provat això però no funciona
 
         '''
-        k = 0
+
         if len(played_stones2) < stones_per_player:
             if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == -1: # Comprovar que la casella és valida i està buida
-                k += 1
                 if turn == 1:
                     taula[i][j] = 1
+                    played_stones1.append(Stone(i, j, PLAYER_COLOR[0]))
                     turn = 2
-                    return bool(k < 8), turn, end()
+                    return bool(len(played_stones2) < stones_per_player), turn, end()
                 elif turn == 2:
                     taula[i][j] = 2
+                    played_stones2.append(Stone(i, j, PLAYER_COLOR[0]))
                     turn = 1
-                    return bool(k < 8), turn, end()
+                    return bool(len(played_stones2) < stones_per_player), turn, end()
         else:
-            if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == -1:
-                if selected_stone != None:
-                    si = selected_stone[0]
-                    sj = selected_stone[1]
-                    taula[si][sj] = NO_PLAYER
-                    selected_stone = None
+            if selected_stone != None:
+                si = selected_stone[0]
+                sj = selected_stone[1]
+                taula[si][sj] = NO_PLAYER
+                selected_stone = None
+                if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == -1:
                     if turn == 1:
                         taula[i][j] = 1
                         turn = 2
@@ -163,7 +171,14 @@ def set_board_up(stones_per_player = 4):
                         taula[i][j] = 2
                         turn = 1
                         return False, turn, end()
+<<<<<<< HEAD
+            else:
+                return False, turn, end()
+        
+            
+=======
         '''          
+>>>>>>> 59a1dac9d7e19173e4e0cadf4430dee82e466f09
 
     def draw_txt(end = False):
         'Use ASCII characters to draw the board as a matrix.'
