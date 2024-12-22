@@ -113,12 +113,18 @@ def set_board_up(stones_per_player = 4):
             if turn == 1:
                 selected_stone = played_stones1
         '''    
-        
+    
         nonlocal turn, taula, selected_stone, played_stones1, played_stones2
+<<<<<<< HEAD
 
         '''
         # Aquest codi només funciona per les 4 primeres
         if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == -1: # Comprovar que la casella és valida i està buida
+=======
+        
+        # Aquest codi només funciona per les 4 primeres
+        if (0 <= i < BSIZ) and (0 <= j < BSIZ) and (taula[i][j] == -1): # Comprovar que la casella és valida i està buida
+>>>>>>> 59a1dac9d7e19173e4e0cadf4430dee82e466f09
             if turn == 1:
                 taula[i][j] = 1
                 played_stones1.append(Stone(i, j, PLAYER_COLOR[0]))
@@ -126,16 +132,13 @@ def set_board_up(stones_per_player = 4):
                 return bool(len(played_stones1) < stones_per_player), turn, end()
             elif turn == 2:
                 taula[i][j] = 2
-                played_stones2.append(Stone(i, j, PLAYER_COLOR[0]))
+                played_stones2.append(Stone(i, j, PLAYER_COLOR[1]))
                 turn = 1
                 return bool(len(played_stones2) < stones_per_player), turn, end()
-            
-        # Aquest codi només funciona per les 4 primeres
-        if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == -1: # Comprovar que la casella és valida i està buida
-            return xd(i, j)
         else:
-            print ("La casella no és vàlida o està ocupada")
-            return xd(i, j)
+            print ("La casella no és vàlida o està ocupada.")
+            print ("Introdueix una casella vàlida.")
+            return bool(len(played_stones2) < stones_per_player), turn, end()
         
         # He provat això però no funciona
 
@@ -168,17 +171,21 @@ def set_board_up(stones_per_player = 4):
                         taula[i][j] = 2
                         turn = 1
                         return False, turn, end()
+<<<<<<< HEAD
             else:
                 return False, turn, end()
         
             
+=======
+        '''          
+>>>>>>> 59a1dac9d7e19173e4e0cadf4430dee82e466f09
 
     def draw_txt(end = False):
         'Use ASCII characters to draw the board as a matrix.'
         if end:
-            print("Ha guanyat el jugador :", turn)
-        else:
-            for fila in range(len(taula)):
+            print("Ha guanyat el jugador ", turn)
+            
+        for fila in range(len(taula)):
                 print("|", end="")
                 for columna in range(len(taula[fila])):
                     if taula[fila][columna] == NO_PLAYER:
@@ -188,8 +195,10 @@ def set_board_up(stones_per_player = 4):
                     elif taula[fila][columna] == 2:
                         print(" O ", end="")
                 print("|")
-            
-
+                if turn == 1:
+                    print("Ara li toca al jugador 1, que és el X")
+                else:
+                    print("Ara li toca al jugador 2, que és el O")
 
     # return these 4 functions to make them available to the main program
     return stones, select_st, move_st, draw_txt
