@@ -171,7 +171,9 @@ def set_board_up(stones_per_player = 4):
                         turn = 1
                         return False, turn, end()
             else:
-                return False, turn, end()
+                print ("La casella no és vàlida o està ocupada.")
+                print ("Introdueix una casella vàlida.")
+                return a_stone_selected, turn, end()
         
             
                  
