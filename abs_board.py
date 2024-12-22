@@ -47,14 +47,6 @@ def set_board_up(stones_per_player = 4):
         To be called only after all stones played.
         Report success by returning a boolean;
         '''
-
-        '''
-        if taula[i][j] == PLAYER_COLOR[turn - 1]:
-            if Stone.color == PLAYER_COLOR:
-                return True
-            else:
-                pass
-        '''
         pass    
         nonlocal selected_stone
 
