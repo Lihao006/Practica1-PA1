@@ -168,8 +168,10 @@ def set_board_up(stones_per_player = 4):
 
     def draw_txt(end = False):
         'Use ASCII characters to draw the board as a matrix.'
-        def xd():
-            for fila in range(len(taula)):
+        if end:
+            print("Ha guanyat el jugador :", turn)
+            
+        for fila in range(len(taula)):
                 print("|", end="")
                 for columna in range(len(taula[fila])):
                     if taula[fila][columna] == NO_PLAYER:
@@ -179,10 +181,8 @@ def set_board_up(stones_per_player = 4):
                     elif taula[fila][columna] == 2:
                         print(" O ", end="")
                 print("|")
-        if end:
-            print("Ha guanyat el jugador :", turn)
-        else:
-            return xd
+
+            
             
 
 
