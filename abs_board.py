@@ -48,7 +48,6 @@ def set_board_up(stones_per_player = 4):
         Report success by returning a boolean;
         '''
 
-<<<<<<< HEAD
         '''
         if taula[i][j] == PLAYER_COLOR[turn - 1]:
             if Stone.color == PLAYER_COLOR:
@@ -57,14 +56,12 @@ def set_board_up(stones_per_player = 4):
                 pass
         '''
         pass    
-=======
         nonlocal selected_stone
 
         if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == turn:
             selected_stone = (i, j)
             return True
         return False   
->>>>>>> 
 
     def end(): 
         '''
@@ -118,7 +115,6 @@ def set_board_up(stones_per_player = 4):
         already selected, current player, and boolean indicating
         the end of the game.
         '''
-<<<<<<< HEAD
         '''
         nonlocal turn, selected_stone, played_stones1, played_stones2
 
@@ -129,8 +125,6 @@ def set_board_up(stones_per_player = 4):
         pass
 
                
-=======
->>>>>>> fcf59da3878cf203d33ed7e38d2f057978c6436d
         
         nonlocal turn, taula
 
