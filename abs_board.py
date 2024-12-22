@@ -167,7 +167,6 @@ def set_board_up(stones_per_player = 4):
     def draw_txt(end = False):
         'Use ASCII characters to draw the board as a matrix.'
         if end:
-            print("Game over")
             print("Ha guanyat el jugador :", turn)
         else:
             for fila in range(len(taula)):
