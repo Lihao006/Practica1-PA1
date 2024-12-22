@@ -118,9 +118,6 @@ def set_board_up(stones_per_player = 4):
 
         '''
         # Aquest codi només funciona per les 4 primeres
-        if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == -1: # Comprovar que la casella és valida i està buida
-        
-        # Aquest codi només funciona per les 4 primeres
         if (0 <= i < BSIZ) and (0 <= j < BSIZ) and (taula[i][j] == -1): # Comprovar que la casella és valida i està buida
             if turn == 1:
                 taula[i][j] = 1
