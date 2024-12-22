@@ -116,9 +116,7 @@ def set_board_up(stones_per_player = 4):
         
         nonlocal turn, taula, selected_stone, played_stones1, played_stones2
 
-        
-        # Aquest codi només funciona per les 4 primeres
-        if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == -1: # Comprovar que la casella és valida i està buida
+        def xd():
             if turn == 1:
                 taula[i][j] = 1
                 played_stones1.append(Stone(i, j, PLAYER_COLOR[0]))
@@ -129,9 +127,13 @@ def set_board_up(stones_per_player = 4):
                 played_stones2.append(Stone(i, j, PLAYER_COLOR[0]))
                 turn = 1
                 return bool(len(played_stones2) < stones_per_player), turn, end()
+            
+        # Aquest codi només funciona per les 4 primeres
+        if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == -1: # Comprovar que la casella és valida i està buida
+            return xd()
         else:
             print ("La casella no és vàlida o està ocupada")
-            return 
+            return xd()
         
         # He provat això però no funciona
 
