@@ -180,10 +180,10 @@ def set_board_up(stones_per_player = 4):
                     elif taula[fila][columna] == 2:
                         print(" O ", end="")
                 print("|")
-                if turn == 1:
-                    print("Ara li toca al jugador 1, que és el X")
-                else:
-                    print("Ara li toca al jugador 2, que és el O")
+        if turn == 1:
+            print("Ara li toca al jugador 1, que és el X")
+        else:
+            print("Ara li toca al jugador 2, que és el O")
 
     # return these 4 functions to make them available to the main program
     return stones, select_st, move_st, draw_txt
