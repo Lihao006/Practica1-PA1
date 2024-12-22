@@ -26,7 +26,7 @@ def set_board_up(stones_per_player = 4):
     played_stones1 = []
     played_stones2 = []
     
-    selected_stone = Stone
+    selected_stone = None
 
     def stones():
         "return iterable with the stones already played"
@@ -48,7 +48,12 @@ def set_board_up(stones_per_player = 4):
         '''
 
         # if Stone.color == PLAYER_COLOR:
-        pass    
+        nonlocal selected_stone
+
+        if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == turn:
+            selected_stone = (i, j)
+            return True
+        return False   
 
     def end(): 
         '''
@@ -101,17 +106,21 @@ def set_board_up(stones_per_player = 4):
         Return 3 values: bool indicating whether a stone is
         already selected, current player, and boolean indicating
         the end of the game.
-        
-        return True/False, turn, end() 
         '''
         
         nonlocal turn, selected_stone
 
-        if len(played_stones2) != stones_per_player:
+        if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == -1: # Comprovar que la casella és valida i està buida
+            #if len(played_stones2) != stones_per_player:
             if turn == 1:
-                played_stones1.append(Stone(i, j, PLAYER_COLOR[0]))
+                taula[i][j] = 1
                 turn = 2
-                return True, turn, end()             
+                return bool(len(played_stones2) != stones_per_player), turn, end()
+            if turn == 2:
+                taula[i][j] = 2
+                turn = 1
+                return bool(len(played_stones2) != stones_per_player), turn, end()
+            
 
     def draw_txt(end = False):
         'Use ASCII characters to draw the board as a matrix.'
