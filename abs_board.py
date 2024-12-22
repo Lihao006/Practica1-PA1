@@ -106,9 +106,38 @@ def set_board_up(stones_per_player = 4):
         Return 3 values: bool indicating whether a stone is
         already selected, current player, and boolean indicating
         the end of the game.
-        '''  
+        '''
+        '''
+        nonlocal turn, selected_stone, played_stones1, played_stones2
+
+        if len(played_stones2) != stones_per_player:
+            if turn == 1:
+                selected_stone = played_stones1
+        '''    
     
         nonlocal turn, taula, selected_stone, played_stones1, played_stones2
+
+        '''
+        # Aquest codi només funciona per les 4 primeres
+        if (0 <= i < BSIZ) and (0 <= j < BSIZ) and (taula[i][j] == -1): # Comprovar que la casella és valida i està buida
+            if turn == 1:
+                taula[i][j] = 1
+                played_stones1.append(Stone(i, j, PLAYER_COLOR[0]))
+                turn = 2
+                return bool(len(played_stones1) < stones_per_player), turn, end()
+            elif turn == 2:
+                taula[i][j] = 2
+                played_stones2.append(Stone(i, j, PLAYER_COLOR[1]))
+                turn = 1
+                return bool(len(played_stones2) < stones_per_player), turn, end()
+        else:
+            print ("La casella no és vàlida o està ocupada.")
+            print ("Introdueix una casella vàlida.")
+            return bool(len(played_stones2) < stones_per_player), turn, end()
+        
+        # He provat això però no funciona
+
+        '''
 
         if len(played_stones2) < stones_per_player:
             if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == -1: # Comprovar que la casella és valida i està buida
@@ -141,6 +170,7 @@ def set_board_up(stones_per_player = 4):
                 return False, turn, end()
         
             
+                 
 
     def draw_txt(end = False):
         'Use ASCII characters to draw the board as a matrix.'
