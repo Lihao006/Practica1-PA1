@@ -47,7 +47,6 @@ def set_board_up(stones_per_player = 4):
         Report success by returning a boolean;
         '''
 
-        # if Stone.color == PLAYER_COLOR:
         nonlocal selected_stone
 
         if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == turn:
@@ -110,16 +109,16 @@ def set_board_up(stones_per_player = 4):
         
         nonlocal turn, selected_stone
 
+        # Aquest codi només funciona per les 4 primeres
         if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == -1: # Comprovar que la casella és valida i està buida
-            #if len(played_stones2) != stones_per_player:
             if turn == 1:
                 taula[i][j] = 1
                 turn = 2
-                return bool(len(played_stones2) != stones_per_player), turn, end()
+                return bool(len(played_stones2) < stones_per_player), turn, end()
             if turn == 2:
                 taula[i][j] = 2
                 turn = 1
-                return bool(len(played_stones2) != stones_per_player), turn, end()
+                return bool(len(played_stones2) < stones_per_player), turn, end()
             
 
     def draw_txt(end = False):
