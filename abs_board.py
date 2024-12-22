@@ -90,9 +90,8 @@ def set_board_up(stones_per_player = 4):
                 return True
 
         # Comprovar les diagonals
-        if -1 != taula[0][0] == taula[1][1] == taula[2][2]:
-            return True
-        if -1 != taula[0][2] == taula[1][1] == taula[2][0]:
+        if (-1 != taula[0][0] == taula[1][1] == taula[2][2]) or (-1 != taula[0][2] == taula[1][1] == taula[2][0]):
+            print ("Ha guanyat el jugador :", turn)
             return True
 
         return False
