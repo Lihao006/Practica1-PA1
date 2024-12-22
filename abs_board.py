@@ -117,7 +117,7 @@ def set_board_up(stones_per_player = 4):
         nonlocal turn, taula, selected_stone, played_stones1, played_stones2
         
         # Aquest codi només funciona per les 4 primeres
-        if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == -1: # Comprovar que la casella és valida i està buida
+        if (0 <= i < BSIZ) and (0 <= j < BSIZ) and (taula[i][j] == -1): # Comprovar que la casella és valida i està buida
             if turn == 1:
                 taula[i][j] = 1
                 played_stones1.append(Stone(i, j, PLAYER_COLOR[0]))
