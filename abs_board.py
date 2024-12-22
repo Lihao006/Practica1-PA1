@@ -123,13 +123,15 @@ def set_board_up(stones_per_player = 4):
                 taula[i][j] = 1
                 played_stones1.append(Stone(i, j, PLAYER_COLOR[0]))
                 turn = 2
-                return bool(len(played_stones2) < stones_per_player), turn, end()
+                return bool(len(played_stones1) < stones_per_player), turn, end()
             elif turn == 2:
                 taula[i][j] = 2
                 played_stones2.append(Stone(i, j, PLAYER_COLOR[0]))
                 turn = 1
                 return bool(len(played_stones2) < stones_per_player), turn, end()
-        
+        else:
+            print ("La casella no és vàlida o està ocupada")
+            return 
         
         # He provat això però no funciona
 
