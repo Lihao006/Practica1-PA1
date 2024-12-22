@@ -33,7 +33,7 @@ def set_board_up(stones_per_player = 4):
         "return iterable with the stones already played"
         nonlocal played_stones1, played_stones2
         for fila in range(BSIZ):
-            for columna in range(len(taula[fila])): # Això podria ser "for columna in range(BSIZ):" perquè al inicialitzar la taula les columnes són : "NO_PLAYER for y in range(BSIZ)"
+            for columna in range(BSIZ): # Això podria ser "for columna in range(BSIZ):" perquè al inicialitzar la taula les columnes són : "NO_PLAYER for y in range(BSIZ)"
                 if taula[fila][columna] == 1:  
                     played_stones1.append(Stone(fila, columna, PLAYER_COLOR[0]))
                 elif taula[fila][columna] == 2:
