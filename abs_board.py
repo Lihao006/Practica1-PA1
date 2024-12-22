@@ -27,7 +27,7 @@ def set_board_up(stones_per_player = 4):
     played_stones2 = []
     
     selected_stone = None
-    stone_selected = False
+    a_stone_selected = False
 
     def stones():
         "return iterable with the stones already played"
@@ -145,16 +145,16 @@ def set_board_up(stones_per_player = 4):
                     taula[i][j] = 1
                     played_stones1.append(Stone(i, j, PLAYER_COLOR[0]))
                     turn = 2
-                    return stone_selected, turn, end()
+                    return a_stone_selected, turn, end()
                 elif turn == 2:
                     taula[i][j] = 2
-                    played_stones2.append(Stone(i, j, PLAYER_COLOR[0]))
+                    played_stones2.append(Stone(i, j, PLAYER_COLOR[1]))
                     turn = 1
-                    return stone_selected, turn, end()
+                    return a_stone_selected, turn, end()
             else:
                 print ("La casella no és vàlida o està ocupada.")
                 print ("Introdueix una casella vàlida.")
-                return bool(len(played_stones2) < stones_per_player), turn, end()
+                return a_stone_selected, turn, end()
         else:
             if selected_stone != None:
                 si = selected_stone[0]
