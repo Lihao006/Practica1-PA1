@@ -114,7 +114,6 @@ def set_board_up(stones_per_player = 4):
                 selected_stone = played_stones1
         '''    
         
-        nonlocal turn, taula, selected_stone, played_stones1, played_stones2
 
         def xd(i, j):
             nonlocal turn, taula, selected_stone, played_stones1, played_stones2
@@ -133,8 +132,9 @@ def set_board_up(stones_per_player = 4):
         if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == -1: # Comprovar que la casella és valida i està buida
             return xd(i, j)
         else:
-            print ("La casella no és vàlida o està ocupada")
-            return xd(i, j)
+            print ("La casella no és vàlida o està ocupada.")
+            print ("Introdueix una casella vàlida.")
+            return draw_txt(False)
         
         # He provat això però no funciona
 
