@@ -22,6 +22,7 @@ def set_board_up(stones_per_player = 4):
     # init board and game data here
     taula = [[NO_PLAYER for y in range(BSIZ)] for x in range(BSIZ)]
     turn = 1 # Turn = 1 per al jugador 1 i 2 per al jugador 2.
+    jugador_actual = PLAYER_COLOR[turn - 1]
 
     played_stones1 = []
     played_stones2 = []
@@ -46,7 +47,13 @@ def set_board_up(stones_per_player = 4):
         Report success by returning a boolean;
         '''
 
-        # if Stone.color == PLAYER_COLOR:
+        '''
+        if taula[i][j] == PLAYER_COLOR[turn - 1]:
+            if Stone.color == PLAYER_COLOR:
+                return True
+            else:
+                pass
+        '''
         pass    
 
     def end(): 
@@ -100,7 +107,7 @@ def set_board_up(stones_per_player = 4):
         the end of the game.
         '''
         '''
-        nonlocal turn, selected_stone
+        nonlocal turn, selected_stone, played_stones1, played_stones2
 
         if len(played_stones2) != stones_per_player:
             if turn == 1:
