@@ -50,20 +50,13 @@ def set_board_up(stones_per_player = 4):
 
         nonlocal selected_stone
 
-<<<<<<< HEAD
         if len(played_stones1) == stones_per_player and len(played_stones2) == stones_per_player:
             if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == turn:
                 selected_stone = (i, j)
                 return True
             return False   
         else:
-            return False
-=======
-        if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == turn:
-            selected_stone = (i, j)
-            return True
-        return False   
->>>>>>> 42c3863e64a762915eb9298fcc27c2bde05fcdfb
+            return False  
 
     def end(): 
         '''
