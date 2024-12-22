@@ -52,7 +52,7 @@ def set_board_up(stones_per_player = 4):
 
         if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == turn:
             selected_stone = (i, j)
-            return True
+            return 
         return False   
 
     def end(): 
@@ -113,10 +113,7 @@ def set_board_up(stones_per_player = 4):
         if len(played_stones2) != stones_per_player:
             if turn == 1:
                 selected_stone = played_stones1
-        '''
-        pass
-
-               
+        '''    
         
         nonlocal turn, taula
 
@@ -126,7 +123,7 @@ def set_board_up(stones_per_player = 4):
             if turn == 1:
                 taula[i][j] = 1
                 turn = 2
-                return bool(len(played_stones2) < stones_per_player), turn, end()
+                return bool(len(played_stones1) < stones_per_player), turn, end()
             elif turn == 2:
                 taula[i][j] = 2
                 turn = 1
