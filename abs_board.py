@@ -169,6 +169,19 @@ def set_board_up(stones_per_player = 4):
                     elif taula[fila][columna] == 2:
                         print(" O ", end="")
                 print("|")
+            
+            try:
+                if len(played_stones2) < stones_per_player:
+                    print("Torn del jugador", turn)
+                    return move_st(int(input("Introdueix la fila: ")), int(input("Introdueix la columna: ")))
+                else:
+                    print("Torn del jugador", turn)
+                    print("Ara selecciona la pedra que vols moure")
+                    return select_st(int(input("Introdueix la fila: ")), int(input("Introdueix la columna: ")))
+            except:
+                print("Introdueix un valor vàlid: de 0 a 2")
+                return draw_txt()
+
 
     # return these 4 functions to make them available to the main program
     return stones, select_st, move_st, draw_txt
