@@ -150,6 +150,10 @@ def set_board_up(stones_per_player = 4):
                     played_stones2.append(Stone(i, j, PLAYER_COLOR[0]))
                     turn = 1
                     return bool(len(played_stones2) < stones_per_player), turn, end()
+                else:
+                    print ("La casella no és vàlida o està ocupada.")
+                    print ("Introdueix una casella vàlida.")
+                    return bool(len(played_stones2) < stones_per_player), turn, end()
         else:
             if selected_stone != None:
                 si = selected_stone[0]
