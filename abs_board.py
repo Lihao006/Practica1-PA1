@@ -52,7 +52,7 @@ def set_board_up(stones_per_player = 4):
 
         if len(played_stones1) == stones_per_player and len(played_stones2) == stones_per_player:
             if 0 <= i < BSIZ and 0 <= j < BSIZ and taula[i][j] == turn:
-                selected_stone = (i, j)
+                selected_stone = (Stone(i, j, PLAYER_COLOR[turn - 1]))
                 return True
             return False   
         else:
@@ -77,25 +77,22 @@ def set_board_up(stones_per_player = 4):
 
         # Com és un algoritme de cerca utilitzo el while
 
-        fila = 0
-        columna = 0
+        fila = selected_stone.x
+        columna = selected_stone.y
 
         # Comprovar files
-        while fila < BSIZ:
-            if -1 != taula[fila][0] == taula[fila][1] == taula[fila][2]:
+        while Stone.x < BSIZ:
+            if -1 != taula[selected_stone.x][0] == taula[selected_stone.x][1] == taula[selected_stone.x][2]:
                 return True 
-            fila += 1
         
         # Comprovar columnes
-        while columna < BSIZ:
-            if -1 != taula[0][columna] == taula[1][columna] == taula[2][columna]:
+        while selected_stone.y < BSIZ:
+            if -1 != taula[0][selected_stone.y] == taula[1][selected_stone.y] == taula[2][selected_stone.y]:
                 return True
-            columna += 1 
 
         # Comprovar les diagonals
         if -1 != taula[0][0] == taula[1][1] == taula[2][2]:
             return True
-        
         if -1 != taula[0][2] == taula[1][1] == taula[2][0]:
             return True
 
@@ -118,7 +115,7 @@ def set_board_up(stones_per_player = 4):
                 selected_stone = played_stones1
         '''    
         
-        nonlocal turn, taula
+        nonlocal turn, taula, selected_stone, played_stones1, played_stones2
 
         
         # Aquest codi només funciona per les 4 primeres
@@ -134,6 +131,7 @@ def set_board_up(stones_per_player = 4):
         
         
         # He provat això però no funciona
+        
         '''
         k = 0
         if len(played_stones2) < stones_per_player:
