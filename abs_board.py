@@ -80,7 +80,7 @@ def set_board_up(stones_per_player = 4):
         columna = 0
 
         # Comprovar files
-        while Stone.x < BSIZ:
+        while fila < BSIZ:
             if -1 != taula[fila][0] == taula[fila][1] == taula[fila][2]:
                 return True 
             fila += 1
