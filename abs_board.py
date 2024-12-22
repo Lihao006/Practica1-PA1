@@ -76,18 +76,20 @@ def set_board_up(stones_per_player = 4):
 
         # Com és un algoritme de cerca utilitzo el while
 
-        fila = selected_stone.x
-        columna = selected_stone.y
+        fila = 0
+        columna = 0
 
         # Comprovar files
-        while Stone.x < BSIZ:
-            if -1 != taula[selected_stone.x][0] == taula[selected_stone.x][1] == taula[selected_stone.x][2]:
+        while fila < BSIZ:
+            if -1 != taula[fila][0] == taula[fila][1] == taula[fila][2]:
                 return True 
+            fila += 1
         
         # Comprovar columnes
-        while selected_stone.y < BSIZ:
-            if -1 != taula[0][selected_stone.y] == taula[1][selected_stone.y] == taula[2][selected_stone.y]:
+        while columna < BSIZ:
+            if -1 != taula[0][columna] == taula[1][columna] == taula[2][columna]:
                 return True
+            columna += 1
 
         # Comprovar les diagonals
         if (-1 != taula[0][0] == taula[1][1] == taula[2][2]) or (-1 != taula[0][2] == taula[1][1] == taula[2][0]):
@@ -168,7 +170,6 @@ def set_board_up(stones_per_player = 4):
     def draw_txt(end = False):
         'Use ASCII characters to draw the board as a matrix.'
         if end:
-            print("Game over")
             print("Ha guanyat el jugador :", turn)
         else:
             for fila in range(len(taula)):
@@ -182,17 +183,6 @@ def set_board_up(stones_per_player = 4):
                         print(" O ", end="")
                 print("|")
             
-            try:
-                if len(played_stones2) < stones_per_player:
-                    print("Torn del jugador", turn)
-                    return move_st(int(input("Introdueix la fila: ")), int(input("Introdueix la columna: ")))
-                else:
-                    print("Torn del jugador", turn)
-                    print("Ara selecciona la pedra que vols moure")
-                    return select_st(int(input("Introdueix la fila: ")), int(input("Introdueix la columna: ")))
-            except:
-                print("Introdueix un valor vàlid: de 0 a 2")
-                return draw_txt()
 
 
     # return these 4 functions to make them available to the main program
