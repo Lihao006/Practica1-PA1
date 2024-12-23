@@ -21,8 +21,9 @@ def set_board_up(stones_per_player = 4):
     'Init stones and board, prepare functions to provide, act as their closure'
     # init board and game data here
     taula = [[NO_PLAYER for y in range(BSIZ)] for x in range(BSIZ)]
-    turn = 1 # Turn = 1 per al jugador 1 i 2 per al jugador 2.
+    turn = 0 # Turn = 0 per al jugador 1 i 1 per al jugador 2.
 
+    played_stones = []
     played_stones1 = []
     played_stones2 = []
     
